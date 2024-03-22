@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
 // Burger menu
-import Burger from "@animated-burgers/burger-squeeze";
-import "@animated-burgers/burger-squeeze/dist/styles.css";
+import { Sling as Hamburger } from "hamburger-react";
 import { navLinks } from "@/data";
 import Link from "next/link";
-import { MotionDiv, MotionSpan } from "./UI/MotionComponents";
+import { MotionDiv } from "./UI/MotionComponents";
 import { AnimatePresence } from "framer-motion";
 
 const Menu = () => {
@@ -13,13 +12,8 @@ const Menu = () => {
 
   return (
     <>
-      <div className="menu hidden fixed right-5 top-5 z-50 bg-dark shadow-lg rounded-full p-3">
-        <Burger
-          Component="button"
-          type="button"
-          isOpen={menu}
-          onClick={() => setMenu((prev) => !prev)}
-        />
+      <div className="menu hidden fixed right-5 top-5 z-50 bg-dark shadow-lg rounded-full p-2">
+        <Hamburger size={30} toggled={menu} toggle={setMenu} />
       </div>
 
       <AnimatePresence>

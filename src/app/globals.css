@@ -2,32 +2,248 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Global Styles */
+body,
+html {
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+
+::-webkit-scrollbar {
+  @apply w-2 bg-darkPrimary hidden;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #13FF00;
+  border-radius: 20px;
+}
+
+::selection {
+  @apply bg-primary text-dark;
+}
+
+.wrapper {
+  @apply max-w-[1536px] w-full mx-auto px-4;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px #13FF00;
+}
+
+.title:hover.title::before {
+  @apply w-[120px];
+}
+
+.title::before {
+  content: "";
+  @apply absolute bottom-[-5px] left-[50%] h-1 w-[65px] rounded-full bg-primary transition-all;
+  transform: translate(-50%);
+}
+
+/* Navbar */
+.nav-item::before {
+  content: "";
+  @apply absolute top-[-10px] left-[50%] w-2 h-2 rounded-full bg-transparent transition-colors;
+  transform: translate(-50%, 0);
+}
+
+.nav-item:hover {
+  @apply text-primary;
+}
+
+.nav-item:hover.nav-item::before {
+  @apply bg-primary;
+}
+
+/* Hero section */
+.hero-circle::before {
+  content: "";
+  @apply w-[540px] h-[540px] absolute rounded-full top-[-1%] left-[-1%];
+  box-shadow: 0 0 30px 8px #13FF00 inset;
+}
+
+.hero-circle {
+  box-shadow: 0 0 30px #13FF00;
+}
+
+.hero-title::before {
+  content: "";
+  @apply absolute bottom-[-30%] left-[26%] w-[460px] h-[5px] bg-primary;
+}
+
+.hero-subtitle::before {
+  content: "Front-end Developer";
+  @apply absolute top-[25%] left-[18px] text-transparent -z-10;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #373737;
+}
+
+/* Swiper */
+
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 50px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 15px !important;
+  height: 15px !important;
+  background-color: transparent !important;
+  border: 2px solid #ffffff !important;
+  opacity: 0.5;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  box-shadow: 0 0 10px 1px #13FF00;
+  background-color: #00ff0d !important;
+  border: none !important;
+}
+
+/* Responsive */
+
+@media(max-width: 1300px) {
+  html {
+    font-size: 14px;
+  }
+
+  .hero-content {
+    @apply max-w-[540px]
+  }
+
+  .hero-subtitle {
+    @apply text-5xl
+  }
+
+  .hero-about {
+    @apply max-w-[480px]
+  }
+
+  .hero-title::before {
+    @apply w-[300px]
+  }
+
+  .contact-item {
+    @apply w-[220px]
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@media (max-width: 940px) {
+  .hero {
+    @apply flex justify-center;
+  }
+
+  .hero-circle,
+  .hero-img {
+    @apply hidden;
+  }
+
+  .hero-text {
+    @apply flex justify-center;
+  }
+
+  .hero-shape {
+    @apply w-full left-0 skew-x-0;
+  }
+
+  .hero-content {
+    @apply w-full;
+  }
+
+  #contact {
+    @apply flex-col;
+  }
+
+  .contact-info {
+    @apply rounded-none rounded-t-md px-4 py-8;
+  }
+
+  .contact-info h4 {
+    @apply text-center;
+  }
+
+  .contact-group {
+    @apply flex-col gap-8;
+  }
+
+  .contact-group div,
+  .contact-group input {
+    @apply w-full;
+  }
+
+  #contact form {
+    @apply rounded-none w-full rounded-b-md px-4;
+  }
+
+  .contact-item {
+    @apply hidden
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@media (max-width: 820px) {
+  .about-services {
+    @apply grid-cols-1 mt-20;
   }
+
+  .about-services h5 {
+    @apply ml-0 text-center;
+  }
+
+  .about-mobileMargin {
+    @apply mt-20;
+  }
+
+  .about-experence {
+    @apply grid-cols-1 gap-20
+  }
+
+  .project-card {
+    @apply max-w-[320px];
+  }
+
+  .project-card-image{
+    @apply h-[180px];
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    @apply h-auto py-28;
+  }
+
+  nav {
+    @apply hidden;
+  }
+
+  .menu {
+    @apply block;
+  }
+
+  .hero-title {
+    font-size: 2.50rem;
+  }
+
+  .hero-subtitle {
+    @apply text-4xl my-4 mt-0;
+  }
+
+}
+
+@media(max-height: 620px) {
+  nav {
+    @apply hidden;
+  }
+
+  .menu {
+    @apply block;
+  }
+
 }

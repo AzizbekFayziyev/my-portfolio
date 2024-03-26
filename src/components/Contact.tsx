@@ -1,13 +1,67 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Button from "./UI/Button";
 import { MotionSection } from "./UI/MotionComponents";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface ContactForm {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 const Contact = () => {
+  const { register, handleSubmit, reset } = useForm<ContactForm>({
+    defaultValues: {},
+  });
+  const [loading, setLoading] = useState(false);
+
+  const submit: SubmitHandler<ContactForm> = async (data) => {
+    const message = `AVANCODER PORTFOLIO \n\n Name: ${data.name} \n Email: ${data.email} \n Subject: ${data.subject} \n Message: ${data.message}`;
+
+    // fetch config settings
+    const settings = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "cache-control": "no-cache",
+      },
+      body: JSON.stringify({
+        chat_id: process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID,
+        text: message,
+      }),
+    };
+
+    // Sending message to telegram bot
+    try {
+      setLoading(true);
+
+      const response = await fetch(
+        "https://api.telegram.org/bot" +
+          process.env.NEXT_PUBLIC_TELEGRAM_BOT_ID +
+          "/sendMessage",
+        settings
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      window.alert("Message successfully sent!");
+      reset();
+    } catch (error) {
+      console.error("There was a problem with your fetch operation:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <MotionSection
       initial={{ scale: 0, opacity: 0 }}
       whileInView={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 0.3 }}
+      transition={{ delay: 0.2, ease: "anticipate" }}
       className="wrapper flex justify-center py-28 rounded-[33px]"
       id="contact"
     >
@@ -33,7 +87,10 @@ const Contact = () => {
         </ul>
       </div>
 
-      <form className="bg-darkPrimary rounded-r-3xl p-10 w-[600px]">
+      <form
+        onSubmit={handleSubmit(submit)}
+        className="bg-darkPrimary rounded-r-3xl p-10 w-[600px]"
+      >
         <div className="contact-group flex">
           <div className="w-[80%] mr-1">
             <label
@@ -44,6 +101,7 @@ const Contact = () => {
             </label>
 
             <input
+              {...register("name")}
               autoComplete="off"
               className="bg-darkLight focus:bg-dark transition-all focus:shadow-inner outline-none rounded-md p-2"
               type="text"
@@ -62,6 +120,7 @@ const Contact = () => {
             </label>
 
             <input
+              {...register("email")}
               autoComplete="off"
               className="bg-darkLight focus:bg-dark transition-all focus:shadow-inner outline-none rounded-md p-2 w-full"
               type="email"
@@ -80,6 +139,7 @@ const Contact = () => {
           </label>
 
           <input
+            {...register("subject")}
             autoComplete="off"
             className="bg-darkLight focus:bg-dark transition-all focus:shadow-inner outline-none rounded-md p-2 w-full"
             type="text"
@@ -98,6 +158,7 @@ const Contact = () => {
           </label>
 
           <textarea
+            {...register("message")}
             className="bg-darkLight focus:bg-dark transition-all focus:shadow-inner outline-none rounded-md p-2 w-full"
             id="contact_message"
             cols={30}
@@ -108,8 +169,14 @@ const Contact = () => {
         </div>
 
         <div className="mt-4 flex justify-end">
-          <Button size="small">
-            <i className="fa-regular fa-paper-plane" /> Send
+          <Button disabled={loading} size="small">
+            {loading ? (
+              "Sending..."
+            ) : (
+              <>
+                <i className="fa-regular fa-paper-plane" /> Send
+              </>
+            )}
           </Button>
         </div>
       </form>

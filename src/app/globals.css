@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -209,7 +210,7 @@ html {
     @apply max-w-[320px];
   }
 
-  .project-card-image{
+  .project-card-image {
     @apply h-[180px];
   }
 }
@@ -219,7 +220,7 @@ html {
     @apply h-auto py-28;
   }
 
-  nav {
+  .navbar {
     @apply hidden;
   }
 
@@ -232,13 +233,13 @@ html {
   }
 
   .hero-subtitle {
-    @apply text-4xl my-4 mt-0;
+    @apply text-4xl my-4 -mt-5;
   }
 
 }
 
 @media(max-height: 620px) {
-  nav {
+  .navbar {
     @apply hidden;
   }
 

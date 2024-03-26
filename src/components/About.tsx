@@ -2,17 +2,12 @@ import React from "react";
 import Title from "./UI/Title";
 import Image from "next/image";
 import { MotionDiv, MotionP } from "./UI/MotionComponents";
+import AboutParallax from "./AboutParallax";
 
 const About = () => {
   return (
     <section id="about" className="relative pt-24">
-      <span className="absolute right-[-320px] top-[50px] text-darkSecondary text-9xl font-bold -z-10">
-        ABOUT ME
-      </span>
-
-      <span className="absolute left-[-320px] bottom-0 text-darkSecondary text-9xl font-bold -z-10">
-        ABOUT ME
-      </span>
+      <AboutParallax />
 
       <div className="wrapper">
         <Title label="ABOUT ME" />
@@ -49,8 +44,8 @@ const About = () => {
 
       <div className="relative bg-dark mt-20 pt-20 pb-32">
         <MotionDiv
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
+          initial={{ scale: 0, filter: "blur(10px)" }}
+          whileInView={{ scale: 1, filter: "blur(0)" }}
           transition={{ delay: 0.3 }}
         >
           <h4 className="text-4xl text-center font-bold">My Services</h4>
@@ -58,9 +53,9 @@ const About = () => {
 
         <div className="about-services wrapper mt-12 grid grid-cols-2 text-3xl place-items-center font-semibold">
           <MotionDiv
-            initial={{ translateX: -250, opacity: 0 }}
-            whileInView={{ translateX: 0, opacity: 1 }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+            initial={{ translateX: -250, opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ translateX: 0, opacity: 1, filter: "blur(0)" }}
+            transition={{ delay: 0.5 }}
           >
             <h5>
               <i className="fa-solid fa-file-code text-primary text-4xl mr-4" />
@@ -69,19 +64,19 @@ const About = () => {
 
             <h5 className="mt-20 -ml-1">
               <i className="fa-solid fa-layer-group text-primary text-4xl mr-4" />
-              Multi-Page Web Sites
+              Web sites
             </h5>
           </MotionDiv>
 
           <MotionDiv
-            initial={{ translateX: 250, opacity: 0 }}
-            whileInView={{ translateX: 0, opacity: 1 }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+            initial={{ translateX: 250, opacity: 0, filter: "blur(10px)" }}
+            whileInView={{ translateX: 0, opacity: 1, filter: "blur(0)" }}
+            transition={{ delay: 0.5 }}
             className="about-mobileMargin"
           >
             <h5>
               <i className="fa-solid fa-store text-primary text-4xl mr-4" />
-              E-commerce Web Sites
+              E-commerce
             </h5>
 
             <h5 className="mt-20">
@@ -91,27 +86,40 @@ const About = () => {
           </MotionDiv>
         </div>
 
-        <Image
-          className="absolute -z-10 bottom-[-110px] right-[40px]"
-          src="/about_element.svg"
-          alt="about_element"
-          width={120}
-          height={100}
-        />
-        <Image
-          className="absolute -z-10 top-[-100px] left-[-10px]"
-          src="/about_element.svg"
-          alt="about_element"
-          width={120}
-          height={100}
-        />
+        <MotionDiv
+          initial={{ bottom: "50px" }}
+          whileInView={{ bottom: "-110px" }}
+          transition={{ delay: 0.3 }}
+          className="absolute -z-10 right-[40px]"
+        >
+          <Image
+            src="/about_element.svg"
+            alt="about_element"
+            width={120}
+            height={100}
+          />
+        </MotionDiv>
+
+        <MotionDiv
+          initial={{ top: "50px" }}
+          whileInView={{ top: "-100px" }}
+          transition={{ delay: 0.3 }}
+          className="absolute -z-10 left-[-10px]"
+        >
+          <Image
+            src="/about_element.svg"
+            alt="about_element"
+            width={120}
+            height={100}
+          />
+        </MotionDiv>
       </div>
 
       <div className="about-experence wrapper mt-20 pb-40 grid grid-cols-2 place-items-center">
         <div>
           <MotionDiv
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
+            initial={{ scale: 0, filter: "blur(10px)" }}
+            whileInView={{ scale: 1, filter: "blur(0)" }}
             transition={{ delay: 0.3 }}
           >
             <h4 className="text-4xl mb-8 font-bold">Education</h4>
@@ -135,7 +143,7 @@ const About = () => {
             transition={{ delay: 0.6 }}
             className="mt-8"
           >
-            <p className="text-2xl font-semibold">December 2021 - May 2022</p>
+            <p className="text-2xl font-semibold">DSeptember 2021 - November 2021</p>
             <h5 className="text-3xl text-primary my-2">Computer Literacy</h5>
             <h6 className="text-2xl text-lightGray">IT PARK</h6>
           </MotionDiv>
@@ -143,8 +151,8 @@ const About = () => {
 
         <div>
           <MotionDiv
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
+            initial={{ scale: 0, filter: "blur(10px)" }}
+            whileInView={{ scale: 1, filter: "blur(0)" }}
             transition={{ delay: 0.3 }}
           >
             <h4 className="text-4xl mb-8 font-bold">Jobs</h4>

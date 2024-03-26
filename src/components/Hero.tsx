@@ -76,7 +76,7 @@ const Hero = () => {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-12"
           >
-            <Link href="#">
+            <Link href="/Azizbek Fayziyev - Resume.pdf">
               <Button variant="secondary">
                 <i className="fa-solid fa-cloud-arrow-down" /> Download CV
               </Button>

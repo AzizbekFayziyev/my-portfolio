@@ -1,6 +1,6 @@
 "use client";
-import { useScroll, motion, useTransform, easeOut } from "framer-motion";
-import React, { useEffect } from "react";
+import { useScroll, motion, useTransform } from "framer-motion";
+import React from "react";
 
 const PageIndicator = () => {
   const { scrollYProgress } = useScroll();

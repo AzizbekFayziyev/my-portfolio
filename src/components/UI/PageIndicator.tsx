@@ -6,7 +6,7 @@ const PageIndicator = () => {
   const { scrollYProgress } = useScroll();
   const scrollY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  if ("ontouchstart" in window || navigator.maxTouchPoints) {
+  if (navigator.maxTouchPoints) {
     return null;
   } else {
     return (

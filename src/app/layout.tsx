@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Menu from "@/components/Menu";
 import PageIndicator from "@/components/UI/PageIndicator";
+import ClearityScript from "@/components/ClarityScript";
 
 const inter = Poppins({
   subsets: ["latin"],
@@ -52,6 +53,9 @@ export default function RootLayout({
         <Menu />
         {children}
         <Footer />
+
+        {/* Microsoft clarity */}
+        <ClearityScript />
       </body>
     </html>
   );

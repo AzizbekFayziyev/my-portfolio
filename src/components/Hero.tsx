@@ -49,7 +49,7 @@ const Hero = () => {
             </h1>
           </MotionDiv>
 
-          <MotionSpan
+          <MotionDiv
             initial={{ filter: "blur(10px)", opacity: 0 }}
             animate={{ filter: "blur(0)", opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -57,9 +57,9 @@ const Hero = () => {
             <h2 className="hero-subtitle relative text-6xl z-10 whitespace-nowrap font-bold">
               Front-end Developer
             </h2>
-          </MotionSpan>
+          </MotionDiv>
 
-          <MotionSpan
+          <MotionDiv
             initial={{ filter: "blur(10px)", opacity: 0 }}
             animate={{ filter: "blur(0)", opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -68,7 +68,7 @@ const Hero = () => {
               Front-end developer focused on creating Web sites. I really like
               different projects that solve real problems.
             </p>
-          </MotionSpan>
+          </MotionDiv>
 
           <MotionDiv
             initial={{ translateX: -100, opacity: 0 }}

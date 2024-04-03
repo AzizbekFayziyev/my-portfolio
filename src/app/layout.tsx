@@ -39,6 +39,10 @@ export default function RootLayout({
     <html lang="en" translate="no">
       <head>
         <meta name="theme-color" content="#13FF00" />
+         <meta
+          name="google-site-verification"
+          content="-sX78yVRTSVn0x-AH93dRDmHdSxAp7prK1M9yUO3-r0"
+        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
